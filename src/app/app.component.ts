@@ -9,16 +9,17 @@ import { Pokemon } from './pokemon';
 })
 export class AppComponent implements OnInit {
   title = 'angular-learning';
-  name: string;
+  name: string|undefined;
   pokemonList: Pokemon[] = POKEMONS;
+  pokemonSelected: Pokemon | undefined;
 
   ngOnInit(): void {
     console.log('HelloWorldComponent: ngOnInit', this.pokemonList);
-    this.selectPokemon(POKEMONS[0])
   }
 
-  selectPokemon(pokemon: Pokemon) {
-    console.log(`Selected pokemon: ${pokemon.name}`);
-    this.name = pokemon.name
+  // selectPokemon(pokemon: Pokemon) {
+  selectPokemon(pokemonId: number): void {
+    this.pokemonSelected = this.pokemonList.find(pokemon => pokemon.id === pokemonId);
+    this.name =  this.pokemonSelected?.name ?? "non trouvé";
   }
 }
