@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Logger } from '../services/logger.service';
+import { Logger } from 'app/services/logger.service';
 
 @Component({
   selector: 'app-hello-world',
