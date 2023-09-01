@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { POKEMONS } from './mock-pokemons';
 import { Pokemon } from './pokemon';
+import { PokemonType } from './pokemonType';
 
 @Injectable()
 export class PokemonService {
@@ -18,16 +19,3 @@ export class PokemonService {
   }
 }
 
-export enum PokemonType {
-  Plante,
-  Feu,
-  Eau,
-  Insecte,
-  Normal,
-  Electrik,
-  Poison,
-  Fée,
-  Vol,
-  Combat,
-  Psy
-}
