@@ -1,0 +1,25 @@
+<div class="row">
+  <div class="col s12 m6 offset-m3">
+    <div class="card-content">
+      <div class="input-field">
+      <input
+        type="text"
+        #searchbox
+        (keyup)="searchPokemon(searchbox.value)"
+        placeholder="Rehercher un pokemon"
+      />
+
+      <div class="collection">
+        <a
+          tabindex="0"
+          *ngFor="let pokemon of pokemons$ | async"
+          (click)="goToDetail(pokemon)"
+          (keyup)="goToDetail(pokemon)"
+          class="collection-item"
+        >
+          {{ pokemon.name }}
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
