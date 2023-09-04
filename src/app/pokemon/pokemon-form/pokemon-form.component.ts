@@ -7,17 +7,20 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-pokemon-form',
   templateUrl: './pokemon-form.component.html',
-  styleUrls: ['./pokemon-form.component.scss']
+  styleUrls: ['./pokemon-form.component.scss'],
 })
 export class PokemonFormComponent implements OnInit {
   @Input() pokemon: Pokemon;
 
   types: PokemonType[];
+  isAddForm: boolean;
 
-  constructor(private pokemonService: PokemonService, private router : Router) { }
+  constructor(private pokemonService: PokemonService, private router: Router) {}
 
   ngOnInit() {
     this.types = this.pokemonService.getPokemonTypeList();
+    this.isAddForm = this.router.url.includes('new');
+
   }
 
   hasType(type: PokemonType): boolean {
@@ -38,16 +41,23 @@ export class PokemonFormComponent implements OnInit {
     if (this.pokemon.types.length === 1 && this.hasType(type)) {
       return false;
     }
-    if (this.pokemon.types.length > 2 && !this.hasType(type)) {
+    if (this.pokemon.types.length >= 2 && !this.hasType(type)) {
       return false;
     }
     return true;
   }
 
   onSubmit() {
-    console.log('onSubmit')
-    this.router.navigate(['/pokemons', this.pokemon.id]);
-
+    if(this.isAddForm) {
+      this.pokemonService.createPokemon(this.pokemon).subscribe((pokemon: Pokemon) => {
+        this.router.navigate(['/pokemon', pokemon.id])
+      });
+    } else {
+      this.pokemonService
+        .updatePokemon(this.pokemon)
+        .subscribe(() => {
+            this.router.navigate(['/pokemon', this.pokemon.id])
+        });
+    }
   }
-
 }
