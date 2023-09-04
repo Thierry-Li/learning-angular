@@ -115,6 +115,14 @@
           <button
             type="submit"
             class="waves-effect waves-light btn"
+            (click)="goBack()"
+            (keypress)="goBack()"
+          >
+            Retour
+          </button>
+          <button
+            type="submit"
+            class="waves-effect waves-light btn"
             [disabled]="!pokemonForm.form.valid"
           >
             Valider
@@ -124,4 +132,4 @@
     </div>
   </div>
 </form>
-<h3 *ngIf="!pokemon" class="center">Aucun pokémon à éditer...</h3>
+<h3 *ngIf="!pokemon" class="center"><app-loader></app-loader></h3>

@@ -2,6 +2,10 @@
   <div class="row">
     <app-search-pokemon></app-search-pokemon>
 
+    <div *ngIf="!pokemonList" class="center">
+      <app-loader ></app-loader>
+    </div>
+
     <div *ngFor="let pokemon of pokemonList" class="col s12 m6 l4">
       <button role="button"class="card horizontal" (click)="goToPokemon(pokemon.id)" appPokemonBorderCard>
         <div class="card-image">
@@ -27,6 +31,7 @@
               (keypress)="addNewPokemon()"
               role="button"
               tabindex="0"
+              class="waves-effect waves-light btn"
               >Créer un pokemon</a
             >
   </div>
