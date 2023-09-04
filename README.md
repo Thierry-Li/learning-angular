@@ -31,3 +31,8 @@ To get more help on the Angular CLI use `ng help` or go check out the [Angular C
 * ng version
 * ng config -g cli.packageManager yarn
 
+
+## Deploying
+https://www.syncfusion.com/blogs/post/easy-steps-to-host-an-angular-app-in-github-pages.aspx
+
+ng build --output-path docs --base-href
